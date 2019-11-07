@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TheFoodLab.Models;
 
-namespace TheFoodLab.Controllers
+namespace TheFoodLab.Models
 {
     public class BackOfficeController : Controller
     {
@@ -17,10 +17,10 @@ namespace TheFoodLab.Controllers
 
         public ActionResult Login()
         {
-            return View("Login");
+            return View();
         }
 
-        public ActionResult Loguearse(Moderadores user)
+        public ActionResult Loguearse(Usuario user)
         {
             if (!ModelState.IsValid)
             {

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace TheFoodLab.Controllers
+namespace TheFoodLab.Models
 {
     public class FrontController : Controller
     {
         // GET: Front
         public ActionResult Index()
         {
+			ViewBag.Mensaje="Hola";
             return View();
         }
     }
