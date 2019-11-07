@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TheFoodLab.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace TheFoodLab.Models
 {
@@ -17,10 +18,10 @@ namespace TheFoodLab.Models
 
         public ActionResult Login()
         {
-            return View();
+            return View("Login");
         }
 
-        public ActionResult Loguearse(Usuario user)
+        public ActionResult Loguearse(Moderadores user)
         {
             if (!ModelState.IsValid)
             {
