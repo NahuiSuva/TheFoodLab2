@@ -22,12 +22,12 @@ namespace TheFoodLab.Models
             connection.Close();
         }
 
-        public static bool ValidarLogin(Usuario user)
+        public static bool ValidarLogin(Moderadores user)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandType = System.Data.CommandType.Text;
-            consulta.CommandText = "Select * from Usuario";
+            consulta.CommandText = "Select * from Moderadores";
             SqlDataReader dataReader = consulta.ExecuteReader();
             bool validar = false;
             while (dataReader.Read() && validar == false)
