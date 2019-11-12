@@ -47,5 +47,18 @@ namespace TheFoodLab.Models
             return View("BMRecetas");
         }
 
-    }
+        [HttpPost]
+        public ActionResult Grabar(Receta not, string Accion)
+        {
+            if (Accion == "Editar")
+            {
+                BD.ModificarReceta(not);
+            }
+            else
+            {
+                BD.EliminarReceta(not);
+            }
+
+            return RedirectToAction("BMRecetas");
+        }
 }
