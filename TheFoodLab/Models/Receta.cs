@@ -10,7 +10,8 @@ namespace TheFoodLab.Models
         private int idReceta;
         private string Titulo;
         private string Descripcion;
-        private string Foto;
+        private string NombreImagen;
+        private HttpPostedFileBase Foto;
         private int Duracion;
         private int fk_TiposComidas;
         private int fk_Receteros;
@@ -18,10 +19,11 @@ namespace TheFoodLab.Models
         public int IdReceta { get => idReceta; set => idReceta = value; }
         public string Titulo1 { get => Titulo; set => Titulo = value; }
         public string Descripcion1 { get => Descripcion; set => Descripcion = value; }
-        public string Foto1 { get => Foto; set => Foto = value; }
+        public HttpPostedFileBase Foto1 { get => Foto; set => Foto = value; }
         public int Duracion1 { get => Duracion; set => Duracion = value; }
         public int Fk_TiposComidas { get => fk_TiposComidas; set => fk_TiposComidas = value; }
         public int Fk_Receteros { get => fk_Receteros; set => fk_Receteros = value; }
+        public string NombreImagen1 { get => NombreImagen; set => NombreImagen = value; }
 
         public Receta()
         {

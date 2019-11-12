@@ -65,5 +65,27 @@ namespace TheFoodLab.Models
             }
             return LS;
         }
+
+        public static void ModificarReceta(Receta rec)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand Consulta = Conexion.CreateCommand();
+            Consulta.CommandText = "UPDATE Recetas SET idRecetas=" + rec.IdReceta + ", Titulo='" + rec.Titulo1 + "', Descripcion='" + rec.Descripcion1 +"', Duracion='" +rec.Duracion1+ ",  Foto='" + rec.NombreImagen1 + "' WHERE IdReceta=" + rec.IdReceta;
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conexion);
+        }
+
+        public static void EliminarReceta(int idRec)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand Consulta = Conexion.CreateCommand();
+            Consulta.CommandText = "Delete from Recetas WHERE IdReceta=" + idRec;
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.ExecuteNonQuery();
+            Desconectar(Conexion);
+        }
+
+
     }
 }
