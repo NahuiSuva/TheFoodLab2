@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "BMRecetas";
+}
+
+@using TheFoodLab.Models;
+@model BD;
+@model Receta;
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Site.css">
+</head>
+<body>
+    @foreach (Receta aux in ViewBag.ListaTodasNoticias)
+    {
+        <div style="padding-bottom: 20px;"></div>
+        <div id="TituloBack">
+            <tr>
+                <td><a href="@Url.Action("Detalle", "Home", new { idNoticia = aux.IdReceta })" title="@aux.Titulo1">@aux.Titulo1</a></td>
+                <td>@Html.ActionLink("Editar Noticia", "Accion", "Backoffice", new { Accion = "Editar", Id = aux.IdReceta }, null)</td>
+
+
+                @if (aux.Destacada)
+                {
+                    <td>DESTACADA</td>
+                }
+                else
+                {
+                    <td>No destacada</td>
+                }
+
+
+                <td><a href="@Url.Action("Destacar","BackOffice", new {Destacar=aux.IdNoticia})" title="Destacar">Destacar</a></td>"
+            </tr>
+        </div>
+    }
+</body>
+</html>

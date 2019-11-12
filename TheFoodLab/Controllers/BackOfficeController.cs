@@ -41,5 +41,11 @@ namespace TheFoodLab.Models
                 }
             }
         }
+
+        public ActionResult BMRecetas()
+        {
+            return View("BMRecetas");
+        }
+
     }
 }
