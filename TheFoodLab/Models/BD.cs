@@ -44,6 +44,7 @@ namespace TheFoodLab.Models
         }
         public static List<Receta> TraerRecetas()
         {
+
             List<Receta> LS = new List<Receta>();
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
