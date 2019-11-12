@@ -164,7 +164,7 @@ button,
 input,
 select,
 textarea {
-  margin: 0;
+  margin: 5px;
   font-family: inherit;
   font-size: 100%;
 }
@@ -2013,6 +2013,7 @@ textarea.input-lg {
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: 4px;
+  width: 190px;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
