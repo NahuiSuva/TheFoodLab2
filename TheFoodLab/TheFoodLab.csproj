@@ -127,6 +127,7 @@
     <Content Include="Views\BackOffice\ABMIngredientes.cshtml" />
     <Content Include="Views\BackOffice\BMReceteros.cshtml" />
     <Content Include="Views\BackOffice\ABMTiposDeComidas.cshtml" />
+    <Content Include="Views\BackOffice\BMRecetas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

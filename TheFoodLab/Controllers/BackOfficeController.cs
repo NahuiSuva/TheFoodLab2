@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using TheFoodLab.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace TheFoodLab.Models
+namespace TheFoodLab.Controllers
 {
     public class BackOfficeController : Controller
     {
@@ -41,26 +41,13 @@ namespace TheFoodLab.Models
                 }
             }
         }
-
+        
         public ActionResult BMRecetas()
         {
-            return View("BMRecetas");
+            ViewBag.ListaRecetas = BD.TraerRecetas();
+            return View();
         }
 
-        [HttpPost]
-        public ActionResult Grabar(Receta not, string Accion)
-        {
-            if (Accion == "Editar")
-            {
-                BD.ModificarReceta(not);
-            }
-            else
-            {
-                BD.EliminarReceta(not);
-            }
-
-            return RedirectToAction("BMRecetas");
-        }
         public ActionResult ABMIngredientes()
         {
             return View();
@@ -74,6 +61,29 @@ namespace TheFoodLab.Models
         public ActionResult ABMTiposDeComidas ()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Grabar(Receta rec, string Accion)
+        {
+            if (rec.Foto1 != null)
+            {
+                string NuevaUbicacion = Server.MapPath("~/Content/") + rec.Foto1.FileName;
+                rec.Foto1.SaveAs(NuevaUbicacion);
+                rec.NombreImagen1 = rec.Foto1.FileName;
+            }
+
+            if (Accion == "Editar")
+            {
+                BD.ModificarReceta(rec);
+            }
+            else
+            {
+                int idReceta = rec.IdReceta;
+                BD.EliminarReceta(idReceta);
+            }
+
+            return RedirectToAction("BMRecetas");
         }
 
 
