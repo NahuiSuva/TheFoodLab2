@@ -47,5 +47,22 @@ namespace TheFoodLab.Models
             return View("BMRecetas");
         }
 
+        public ActionResult ABMIngredientes()
+        {
+            return View();
+        }
+
+        public ActionResult BMReceteros()
+        {
+            return View();
+        }
+
+        public ActionResult ABMTiposDeComidas ()
+        {
+            return View();
+        }
+
+
+
     }
 }
