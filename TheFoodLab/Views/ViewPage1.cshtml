@@ -1,0 +1,24 @@
+﻿@using TheFoodLab.Models;
+@Model BD;
+@Model Receta;
+
+<table style="width:75%" height="250" border-bottom="1" draggable="true">
+    @foreach (Receta rece in @ViewBag.ListaRecetas)
+    {
+        <tr>
+            <td><a href=@Url.Action("AbrirNoticia", "Home",new {id = @rece.idReceta },null)>@rece.Titulo</a></td>
+            <td></td>
+            <td>
+                
+            </td>
+            }
+        </tr>
+    }
+    <tr>
+        <td>
+            <img src="~/Content/mas.png" width=300 />
+            <a href="@Url.Action("AgregarNot", "BackOffice", new { ListNoticias = ViewBag.ListNoticias},null)"></a>
+        </td>
+    </tr>
+</table>
+ }
