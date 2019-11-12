@@ -61,4 +61,22 @@ namespace TheFoodLab.Models
 
             return RedirectToAction("BMRecetas");
         }
+        public ActionResult ABMIngredientes()
+        {
+            return View();
+        }
+
+        public ActionResult BMReceteros()
+        {
+            return View();
+        }
+
+        public ActionResult ABMTiposDeComidas ()
+        {
+            return View();
+        }
+
+
+
+    }
 }
