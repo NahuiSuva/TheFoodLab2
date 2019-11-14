@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Accion";
+}
+
+@using TheFoodLab.Models;
+
+@model Receta
+
+@Html.BeginForm("Grabar", "BackOffice", new { Accion = ViewBag.Accion }, FormMethod.Post, new { enctype = "multipart/form-data" })
+@Html.HiddenFor(model => model.IdReceta)
+<h4 style="padding-top:50px; color:red;">@ViewBag.Error</h4>
+<br />
+<p>Seccion:</p> @Html.DropDownListFor(model => model.Fk_TiposComidas, new SelectList(ViewBag.ListaTipo, "IdTipoNoticia", "Nombre"))
+<br />
+<p style="padding-top:20px;">Titulo:</p> @Html.TextBoxFor(model => model.Titulo1) @Html.ValidationMessageFor(model => model.Titulo1) <br />
+<p style="padding-top:20px;">Imagen:</p> @Html.TextBoxFor(model => model.Foto1, new { Type = "File" }) @Html.ValidationMessageFor(model => model.Foto1) <br />
+<p style="padding-top:20px;">Descripcion:</p> @Html.TextBoxFor(model => model.Descripcion1) @Html.ValidationMessageFor(model => model.Descripcion1) <br />
+<p style="padding-top:20px;">Duracion:</p> @Html.TextBoxFor(model => model.Duracion1) @Html.ValidationMessageFor(model => model.Duracion1) <br />
+<input type="submit" value="Enviar" />
+

@@ -87,6 +87,17 @@ namespace TheFoodLab.Controllers
         }
 
 
-
+        public ActionResult Accion(string Accion, int id)
+        {
+            ViewBag.Accion = Accion;
+            Receta not = new Receta();
+            if (id > 0)
+            {
+                // Voy a buscar la noticia a la base de datos
+                not = BD.TraerUnaReceta(id);
+            }
+            ViewBag.ListaTipo = BD.ListarTipos();
+            return View(not);
+        }
     }
 }
