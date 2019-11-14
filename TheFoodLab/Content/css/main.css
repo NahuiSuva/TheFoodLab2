@@ -1544,7 +1544,7 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  padding: 20px 0;
+  padding: 10px 0;
   position: fixed;
     background: rgba(100, 222, 182);
   left: 0;
@@ -1643,7 +1643,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Nav Meu Container */
 #nav-menu-container {
-  margin: 0; }
+  margin: 0; 
+  padding-left: 470px;
+  }
 
 @media (min-width: 1024px) {
   #nav-menu-container {
@@ -1792,7 +1794,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .home-banner-area {
   background: url(../img/header-bg.png) no-repeat top center;
-  background-size: cover; }
+  background-size: auto; }
   @media (max-width: 767.98px) {
     .home-banner-area .fullscreen {
       height: 900px !important; } }
