@@ -91,13 +91,21 @@ namespace TheFoodLab.Controllers
         {
             ViewBag.Accion = Accion;
             Receta not = new Receta();
-            if (id > 0)
+            if (Accion == "Editar")
             {
-                // Voy a buscar la noticia a la base de datos
-                not = BD.TraerUnaReceta(id);
+                if (id > 0)
+                {
+                    // Voy a buscar la noticia a la base de datos
+                    not = BD.TraerUnaReceta(id);
+                }
+                ViewBag.ListaTipo = BD.ListarTipos();
+                return View(not);
             }
-            ViewBag.ListaTipo = BD.ListarTipos();
-            return View(not);
+            else
+            {
+                BD.EliminarReceta(id);
+                return View("BMRecetas");
+            }
         }
     }
 }

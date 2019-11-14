@@ -10,7 +10,7 @@ namespace TheFoodLab.Models
     public class BD
     {
         public static List<TiposComida> ListaTipos = new List<TiposComida>();
-        public static string connectionString = ("Server=.; Database=TheFoodLabBD; User id=alumno,password=alumno; Integrated security=sspi; Trusted_Connection = True;");
+        public static string connectionString = "Server=.; Database=TheFoodLabBD;User Id=alumno;Password=alumno1;";
         private static SqlConnection Conectar()
         {
             SqlConnection a = new SqlConnection(connectionString);
@@ -54,9 +54,9 @@ namespace TheFoodLab.Models
             SqlDataReader dataReader = consulta.ExecuteReader();
             while (dataReader.Read())
             {
-                int idReceta = Convert.ToInt32(dataReader["idReceta"]);
+                int idReceta = Convert.ToInt32(dataReader["idRecetas"]);
                 string Titulo = dataReader["Titulo"].ToString();
-                string Descripcion = dataReader["Descrpicion"].ToString();
+                string Descripcion = dataReader["Descripcion"].ToString();
                 string Foto = dataReader["Foto"].ToString();
                 int Duracion = Convert.ToInt32(dataReader["Duracion"]);
                 int fk_TiposComidas = Convert.ToInt32(dataReader["fk_TiposComidas"]);
@@ -81,7 +81,7 @@ namespace TheFoodLab.Models
         {
             SqlConnection Conexion = Conectar();
             SqlCommand Consulta = Conexion.CreateCommand();
-            Consulta.CommandText = "Delete from Recetas WHERE IdReceta=" + idRec;
+            Consulta.CommandText = "Delete from Recetas WHERE idRecetas=" + idRec;
             Consulta.CommandType = System.Data.CommandType.Text;
             Consulta.ExecuteNonQuery();
             Desconectar(Conexion);
@@ -92,14 +92,14 @@ namespace TheFoodLab.Models
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandType = System.Data.CommandType.Text;
-            consulta.CommandText = "Select * from Recetas WHERE IdReceta =" + IdReceta.ToString(); ;
+            consulta.CommandText = "Select * from Recetas WHERE idRecetas =" + IdReceta.ToString(); ;
             SqlDataReader dataReader = consulta.ExecuteReader();
             Receta nuevo = new Receta();
             while (dataReader.Read())
             {
-                int idReceta = Convert.ToInt32(dataReader["idReceta"]);
+                int idReceta = Convert.ToInt32(dataReader["idRecetas"]);
                 string Titulo = dataReader["Titulo"].ToString();
-                string Descripcion = dataReader["Descrpicion"].ToString();
+                string Descripcion = dataReader["Descripcion"].ToString();
                 string Foto = dataReader["Foto"].ToString();
                 int Duracion = Convert.ToInt32(dataReader["Duracion"]);
                 int fk_TiposComidas = Convert.ToInt32(dataReader["fk_TiposComidas"]);
@@ -116,11 +116,11 @@ namespace TheFoodLab.Models
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandType = System.Data.CommandType.Text;
-            consulta.CommandText = "Select* from TipoNoticias";
+            consulta.CommandText = "Select* from TiposComida";
             SqlDataReader dataReader = consulta.ExecuteReader();
             while (dataReader.Read())
             {
-                int idTipo = Convert.ToInt32(dataReader["idTiposComida"]);
+                int idTipo = Convert.ToInt32(dataReader["idTiposComidas"]);
                 string Nombre = dataReader["Nombre"].ToString();
                 TiposComida nuevo = new TiposComida(idTipo, Nombre);
                 ListaTipos.Add(nuevo);
