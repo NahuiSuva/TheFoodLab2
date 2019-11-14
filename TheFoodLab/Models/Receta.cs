@@ -30,15 +30,28 @@ namespace TheFoodLab.Models
             
         }
 
-        public Receta(int id,string Titu, string desc, string fot, int dura, int TipoCom, int receteros)
+        public Receta(int id,string Titu, string desc, string nomfot, HttpPostedFileBase img, int dura, int TipoCom, int receteros)
         {
             IdReceta = id;
             Titulo1 = Titu;
             Descripcion1 = desc;
-            Foto1 = fot;
+            NombreImagen1 = nomfot;
+            Foto1 = img;
             Duracion1 = dura;
             fk_TiposComidas = TipoCom;
             Fk_Receteros = receteros;
         }
+
+        public Receta(int id, string Titu, string desc, string nomfot, int dura, int TipoCom, int receteros)
+        {
+            IdReceta = id;
+            Titulo1 = Titu;
+            Descripcion1 = desc;
+            NombreImagen1 = nomfot;
+            Duracion1 = dura;
+            fk_TiposComidas = TipoCom;
+            Fk_Receteros = receteros;
+        }
+
     }
 }

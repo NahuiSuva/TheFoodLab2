@@ -111,6 +111,7 @@
     <Compile Include="Controllers\FrontController.cs" />
     <Compile Include="Models\Moderadores.cs" />
     <Compile Include="Models\Receta.cs" />
+    <Compile Include="Models\TiposComida.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +129,7 @@
     <Content Include="Views\BackOffice\BMReceteros.cshtml" />
     <Content Include="Views\BackOffice\ABMTiposDeComidas.cshtml" />
     <Content Include="Views\BackOffice\BMRecetas.cshtml" />
+    <Content Include="Views\BackOffice\Accion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

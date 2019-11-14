@@ -9,7 +9,8 @@ namespace TheFoodLab.Models
 {
     public class BD
     {
-        public static string connectionString = ("Server=.; Database=TheFoodLab BD; Trusted_Connection = True;");
+        public static List<TiposComida> ListaTipos = new List<TiposComida>();
+        public static string connectionString = ("Server=.; Database=TheFoodLabBD; User id=alumno,password=alumno; Integrated security=sspi; Trusted_Connection = True;");
         private static SqlConnection Conectar()
         {
             SqlConnection a = new SqlConnection(connectionString);
@@ -86,6 +87,46 @@ namespace TheFoodLab.Models
             Desconectar(Conexion);
         }
 
+        public static Receta TraerUnaReceta(int IdReceta)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Select * from Recetas WHERE IdReceta =" + IdReceta.ToString(); ;
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            Receta nuevo = new Receta();
+            while (dataReader.Read())
+            {
+                int idReceta = Convert.ToInt32(dataReader["idReceta"]);
+                string Titulo = dataReader["Titulo"].ToString();
+                string Descripcion = dataReader["Descrpicion"].ToString();
+                string Foto = dataReader["Foto"].ToString();
+                int Duracion = Convert.ToInt32(dataReader["Duracion"]);
+                int fk_TiposComidas = Convert.ToInt32(dataReader["fk_TiposComidas"]);
+                int fk_Receteros = Convert.ToInt32(dataReader["fk_Receteros"]);
+                nuevo = new Receta(idReceta, Titulo, Descripcion, Foto, Duracion, fk_TiposComidas, fk_Receteros);
+            }
+            Desconectar(Conexion);
+            return nuevo;
+        }
 
+        public static List<TiposComida> ListarTipos()
+        {
+            ListaTipos.Clear();
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Select* from TipoNoticias";
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                int idTipo = Convert.ToInt32(dataReader["idTiposComida"]);
+                string Nombre = dataReader["Nombre"].ToString();
+                TiposComida nuevo = new TiposComida(idTipo, Nombre);
+                ListaTipos.Add(nuevo);
+            }
+            Desconectar(Conexion);
+            return ListaTipos;
+        }
     }
 }
