@@ -48,7 +48,9 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.625em;
-  position: relative; }
+  position: relative; 
+  padding-top: 120px;
+  }
 
 ol, ul {
   margin: 0;
