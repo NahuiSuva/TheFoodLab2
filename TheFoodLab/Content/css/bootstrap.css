@@ -511,7 +511,7 @@ mark {
 }
 
 .img-fluid {
-    max-width: 100%;
+    max-width: 150px;
     height: auto
 }
 
@@ -1618,9 +1618,7 @@ pre code {
 
 .table td,
 .table th {
-    padding: .75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6
 }
 
 .table thead th {
@@ -1629,7 +1627,6 @@ pre code {
 }
 
 .table tbody+tbody {
-    border-top: 2px solid #dee2e6
 }
 
 .table .table {
@@ -1638,7 +1635,6 @@ pre code {
 
 .table-sm td,
 .table-sm th {
-    padding: .3rem
 }
 
 .table-bordered {
