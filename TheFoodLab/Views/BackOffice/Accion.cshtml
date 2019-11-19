@@ -14,6 +14,7 @@
 <br />
 <p style="padding-top:20px;">Titulo:</p> @Html.TextBoxFor(model => model.Titulo1) @Html.ValidationMessageFor(model => model.Titulo1) <br />
 <p style="padding-top:20px;">Imagen:</p> @Html.TextBoxFor(model => model.Foto1, new { Type = "File" }) @Html.ValidationMessageFor(model => model.Foto1) <br />
+<img src="~/Content/img/@ViewBag.Imagen" />
 <p style="padding-top:20px;">Descripcion:</p> @Html.TextBoxFor(model => model.Descripcion1) @Html.ValidationMessageFor(model => model.Descripcion1) <br />
 <p style="padding-top:20px;">Duracion:</p> @Html.TextBoxFor(model => model.Duracion1) @Html.ValidationMessageFor(model => model.Duracion1) <br />
 <input type="submit" value="Enviar" />

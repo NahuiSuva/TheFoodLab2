@@ -40,5 +40,11 @@ namespace TheFoodLab.Models
                 }
             }
         }
+
+        public ActionResult RecetasDeRecetero(Receteros rec)
+        {
+            ViewBag.ListaRecetasXRecetero = BD.ListarRecetasXRecetero(rec.IdRecetero);
+            return View();
+        }
     }
 }

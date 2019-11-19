@@ -108,6 +108,7 @@ namespace TheFoodLab.Controllers
                     rec = BD.TraerUnaReceta(id);
                 }
                 ViewBag.ListaTipo = BD.ListarTipos();
+                ViewBag.Imagen = rec.NombreImagen1;
                 return View(rec);
             }
             else
