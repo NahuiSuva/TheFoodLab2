@@ -71,7 +71,7 @@ namespace TheFoodLab.Models
         {
             SqlConnection Conexion = Conectar();
             SqlCommand Consulta = Conexion.CreateCommand();
-            Consulta.CommandText = "UPDATE Recetas SET idRecetas=" + rec.IdReceta + ", Titulo='" + rec.Titulo1 + "', Descripcion='" + rec.Descripcion1 +"', Duracion='" +rec.Duracion1+ ",  Foto='" + rec.NombreImagen1 + "' WHERE IdReceta=" + rec.IdReceta;
+            Consulta.CommandText = "UPDATE Recetas SET Titulo='" + rec.Titulo1 + "', Descripcion='" + rec.Descripcion1 +"', Duracion='" +rec.Duracion1+ "',  Foto='" + rec.NombreImagen1 + "'WHERE idRecetas=" + rec.IdReceta;
             Consulta.CommandType = System.Data.CommandType.Text;
             Consulta.ExecuteNonQuery();
             Desconectar(Conexion);
@@ -81,6 +81,12 @@ namespace TheFoodLab.Models
         {
             SqlConnection Conexion = Conectar();
             SqlCommand Consulta = Conexion.CreateCommand();
+            Consulta.CommandText = "Delete from IngredientesXRecetas WHERE fk_Recetas=" + idRec;
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.ExecuteNonQuery();
+            Consulta.CommandText = "Delete from Valoraciones WHERE fk_Recetas=" + idRec;
+            Consulta.CommandType = System.Data.CommandType.Text;
+            Consulta.ExecuteNonQuery();
             Consulta.CommandText = "Delete from Recetas WHERE idRecetas=" + idRec;
             Consulta.CommandType = System.Data.CommandType.Text;
             Consulta.ExecuteNonQuery();

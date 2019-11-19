@@ -104,7 +104,7 @@ namespace TheFoodLab.Controllers
             else
             {
                 BD.EliminarReceta(id);
-                return View("BMRecetas");
+                return RedirectToAction("BMRecetas");
             }
         }
     }
