@@ -70,7 +70,7 @@ namespace TheFoodLab.Controllers
             {
                 if (rec.Foto1 != null)
                 {
-                    string NuevaUbicacion = Server.MapPath("~/Content/") + rec.Foto1.FileName;
+                    string NuevaUbicacion = Server.MapPath("~/Content/img/") + rec.Foto1.FileName;
                     rec.Foto1.SaveAs(NuevaUbicacion);
                     rec.NombreImagen1 = rec.Foto1.FileName;
                 }
@@ -108,6 +108,7 @@ namespace TheFoodLab.Controllers
                     rec = BD.TraerUnaReceta(id);
                 }
                 ViewBag.ListaTipo = BD.ListarTipos();
+                ViewBag.Imagen = rec.NombreImagen1;
                 return View(rec);
             }
             else
