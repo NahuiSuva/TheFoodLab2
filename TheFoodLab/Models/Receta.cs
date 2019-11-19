@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace TheFoodLab.Models
 {
@@ -17,6 +18,7 @@ namespace TheFoodLab.Models
         private int fk_Receteros;
 
         public int IdReceta { get => idReceta; set => idReceta = value; }
+        [Required(ErrorMessage = "Ingresá un titulo valido")]
         public string Titulo1 { get => Titulo; set => Titulo = value; }
         public string Descripcion1 { get => Descripcion; set => Descripcion = value; }
         public HttpPostedFileBase Foto1 { get => Foto; set => Foto = value; }

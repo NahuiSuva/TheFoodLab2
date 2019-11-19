@@ -43,6 +43,28 @@ namespace TheFoodLab.Models
             Desconectar(Conexion);
             return validar;
         }
+
+        public static bool ValidarLoginFront(Receteros user)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Select * from Receteros";
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            bool validar = false;
+            while (dataReader.Read() && validar == false)
+            {
+                string usuario = dataReader["Username"].ToString();
+                string contrasenia = dataReader["Password"].ToString();
+                if (usuario == user.Username1 && contrasenia == user.Password1)
+                {
+                    validar = true;
+                }
+            }
+            Desconectar(Conexion);
+            return validar;
+        }
+
         public static List<Receta> TraerRecetas()
         {
 
