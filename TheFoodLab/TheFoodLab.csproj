@@ -130,6 +130,7 @@
     <Content Include="Views\BackOffice\ABMTiposDeComidas.cshtml" />
     <Content Include="Views\BackOffice\BMRecetas.cshtml" />
     <Content Include="Views\Front\Index.cshtml" />
+    <Content Include="Views\BackOffice\Accion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

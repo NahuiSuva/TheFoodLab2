@@ -3,23 +3,10 @@
 }
 @using TheFoodLab.Models
 @model Receta
-
-    <div class="single-sidebar-widget popular-post-widget">
-        <h4 class="popular-title">Administrador de recetas</h4>
-        <div class="popular-post-list">
-    @foreach (Receta aux in ViewBag.ListaRecetas)
-    {
-                <div class="single-post-list d-flex flex-row align-items-center">
-                    <div class="thumb">
-                        <img class="img-fluid" src="img/blog/pp1.jpg" alt="">
-                    </div>
-                    <div class="details">
-                        <a href="@Url.Action("Detalle", "Home", new { idReceta = aux.IdReceta })"><h6>@aux.Titulo1</h6></a>
-                        <a href='@Html.ActionLink("Editar Receta", "Accion", "Backoffice", new { Accion = "Editar", Id = aux.IdReceta }, null)'><img class="lnr lnr-user" src="~/Content/img/pen.png" alt=""></a>
-                        <a href='@Html.ActionLink("Eliminar Receta", "Accion", "Backoffice", new { Accion = "Eliminar", Id = aux.IdReceta }, null)'><img class="lnr lnr-user" src="~/Content/img/bin.png" alt=""></a>
-                    </div>
-                </div>
-     }
-            </div>
-    </div>
+@foreach (Receta aux in ViewBag.ListaRecetas)
+{
+    <a href="@Url.Action("Detalle", "Home", new { idReceta = aux.IdReceta })"><h6>@aux.Titulo1</h6></a>
+    <a href="@Url.Action("Accion", "Backoffice", new { Accion = "Editar", Id=aux.IdReceta })"><h6>Editar</h6></a>
+    <a href="@Url.Action("Accion", "Backoffice", new { Accion = "Eliminar", Id=aux.IdReceta })"><h6>Eliminar</h6></a>
+}
 
