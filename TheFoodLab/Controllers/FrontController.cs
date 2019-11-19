@@ -12,7 +12,7 @@ namespace TheFoodLab.Models
         // GET: Front
         public ActionResult Index()
         {
-            return View("Login");
+            return View();
         }
 
         public ActionResult Login()
