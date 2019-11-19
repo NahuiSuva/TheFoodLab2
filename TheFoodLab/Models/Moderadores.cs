@@ -11,9 +11,9 @@ namespace TheFoodLab.Models
             private string _Username;
             private string _Password;
 
-            [Required(ErrorMessage = "Ingresá un usuario!!!")]
+            [Required(ErrorMessage = "Ingresá un usuario valido!!!")]
             public string Username { get => _Username; set => _Username = value; }
-            [Required(ErrorMessage = "Ingresá una contraseña!!!")]
+            [Required(ErrorMessage = "Ingresá una contraseña valido!!!")]
             public string Password { get => _Password; set => _Password = value; }
     }
 }
