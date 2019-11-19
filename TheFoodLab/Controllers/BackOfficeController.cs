@@ -13,7 +13,7 @@ namespace TheFoodLab.Controllers
         // GET: BackOffice
         public ActionResult Index()
         {
-            return View();
+            return View("Login");
         }
 
         public ActionResult Login()
@@ -32,7 +32,7 @@ namespace TheFoodLab.Controllers
                 bool validaruser = BD.ValidarLogin(user);
                 if (validaruser)
                 {
-                    return RedirectToAction("Index");
+                    return View("Index");
                 }
                 else
                 {
