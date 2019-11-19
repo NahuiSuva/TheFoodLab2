@@ -10,10 +10,15 @@
                 <div class="banner-content col-lg-8 col-md-12">
                     <h1 class="wow fadeIn" data-wow-duration="4s">Ingresá tus ingredientes <br> y descubrí que recetas podés hacer</h1>
                     <div class="input-wrap">
-                        <form action="" class="form-box d-flex justify-content-between">
-                            <input type="text" placeholder="Buscar ingredientes" class="form-control" name="username">
-                            <button type="submit" class="btn search-btn">Agregar</button>
-                        </form>
+                        @using TheFoodLab.Models;
+                        @model Ingredientes
+                        @using (Html.BeginForm("AgregarIngrediente", "Front", FormMethod.Post))
+                        {
+                            @Html.TextBoxFor(model => model.Nombre) @Html.ValidationMessageFor(model => model.Nombre)<br />
+                            <div class="py-3">
+                                <input type="submit" value="Enviar" class="btn" />
+                            </div>
+                        }
                     </div>
                     <h4 class="text-white">Ingredientes</h4>
                     <div class="courses pt-20">

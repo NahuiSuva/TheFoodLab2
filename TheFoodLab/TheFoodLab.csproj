@@ -109,6 +109,7 @@
     <Compile Include="Controllers\BackOfficeController.cs" />
     <Compile Include="Models\BD.cs" />
     <Compile Include="Controllers\FrontController.cs" />
+    <Compile Include="Models\Ingredientes.cs" />
     <Compile Include="Models\Moderadores.cs" />
     <Compile Include="Models\Receta.cs" />
     <Compile Include="Models\Receteros.cs" />
