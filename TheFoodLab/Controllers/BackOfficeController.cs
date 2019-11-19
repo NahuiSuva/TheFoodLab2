@@ -66,40 +66,49 @@ namespace TheFoodLab.Controllers
         [HttpPost]
         public ActionResult Grabar(Receta rec, string Accion)
         {
-            if (rec.Foto1 != null)
+            if (ModelState.IsValid)
             {
-                string NuevaUbicacion = Server.MapPath("~/Content/") + rec.Foto1.FileName;
-                rec.Foto1.SaveAs(NuevaUbicacion);
-                rec.NombreImagen1 = rec.Foto1.FileName;
-            }
+                if (rec.Foto1 != null)
+                {
+                    string NuevaUbicacion = Server.MapPath("~/Content/") + rec.Foto1.FileName;
+                    rec.Foto1.SaveAs(NuevaUbicacion);
+                    rec.NombreImagen1 = rec.Foto1.FileName;
+                }
 
-            if (Accion == "Editar")
-            {
-                BD.ModificarReceta(rec);
+                if (Accion == "Editar")
+                {
+                    BD.ModificarReceta(rec);
+                }
+                else
+                {
+                    int idReceta = rec.IdReceta;
+                    BD.EliminarReceta(idReceta);
+                }
+                return RedirectToAction("BMRecetas");
             }
             else
             {
-                int idReceta = rec.IdReceta;
-                BD.EliminarReceta(idReceta);
+                ViewBag.ListaTipo = BD.ListarTipos();
+                ViewBag.Accion = Accion;
+                return View("Accion", rec);
             }
 
-            return RedirectToAction("BMRecetas");
         }
 
 
         public ActionResult Accion(string Accion, int id)
         {
             ViewBag.Accion = Accion;
-            Receta not = new Receta();
+            Receta rec = new Receta();
             if (Accion == "Editar")
             {
                 if (id > 0)
                 {
                     // Voy a buscar la noticia a la base de datos
-                    not = BD.TraerUnaReceta(id);
+                    rec = BD.TraerUnaReceta(id);
                 }
                 ViewBag.ListaTipo = BD.ListarTipos();
-                return View(not);
+                return View(rec);
             }
             else
             {
