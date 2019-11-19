@@ -3,10 +3,26 @@
 }
 @using TheFoodLab.Models
 @model Receta
-@foreach (Receta aux in ViewBag.ListaRecetas)
-{
-    <a href="@Url.Action("Detalle", "Home", new { idReceta = aux.IdReceta })"><h6>@aux.Titulo1</h6></a>
-    <a href="@Url.Action("Accion", "Backoffice", new { Accion = "Editar", Id=aux.IdReceta })"><h6>Editar</h6></a>
-    <a href="@Url.Action("Accion", "Backoffice", new { Accion = "Eliminar", Id=aux.IdReceta })"><h6>Eliminar</h6></a>
-}
+
+<table>
+    @foreach (Receta aux in ViewBag.ListaRecetas)
+    {
+        <tr>
+            <td>
+                <img class="img-fluid" src="~/Content/img/@aux.NombreImagen1" alt="">
+            </td>
+            <td>
+                <a href="@Url.Action("Detalle", "Home", new { idReceta = aux.IdReceta })"><h6>@aux.Titulo1</h6></a>
+                <a href="@Url.Action("Accion", "Backoffice", new { Accion = "Editar", Id=aux.IdReceta })">
+                    <img class="lnr lnr-bubble" src="~/Content/img/pen.png" alt="">
+                </a>
+
+                <a href="@Url.Action("Accion", "Backoffice", new { Accion = "Eliminar", Id=aux.IdReceta })">
+                    <img class="lnr lnr-bubble" src="~/Content/img/bin.png" alt="">
+                </a>
+            </td>
+
+        </tr>
+     }
+</table>
 

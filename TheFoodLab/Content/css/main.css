@@ -137,7 +137,10 @@ h6, .h6 {
   color: #222222; }
 
 td, th {
-  border-radius: 0px; }
+  border-radius: 0px; 
+      vertical-align: top;
+	  padding: 5px;
+}
 
 /**
  * For modern browsers
