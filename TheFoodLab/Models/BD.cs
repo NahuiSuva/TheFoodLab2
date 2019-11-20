@@ -179,5 +179,68 @@ namespace TheFoodLab.Models
             }
             return Lista;
         }
+
+        public static Ingredientes TraerIngrediente(Ingredientes Ingre)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Select* from Ingredientes where Nombre = '" + Ingre.Nombre + "'";
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            Ingredientes Ingrediente = new Ingredientes();
+            if (dataReader.Read())
+            {
+                Ingrediente.IdIngrediente = Convert.ToInt32(dataReader["idIngrediente"]);
+                Ingrediente.Nombre = dataReader["Nombre"].ToString();
+            }
+            Desconectar(Conexion);
+            return Ingrediente;
+        }
+
+        public static void IngresarIngredienteABuscar(Ingredientes Ingre)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Insert into IngredientesABuscar (Nombre, fk_idIngrediente) values('"+Ingre.Nombre+"',"+Ingre.IdIngrediente+")" ;
+            consulta.ExecuteNonQuery();
+        }
+
+        public static List<Ingredientes> ListarIngredientesABuscar()
+        {
+            List<Receta> Lista = new List<Receta>();
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Select * from IngredientesABuscar";
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            List<Ingredientes> ListaIngre = new List<Ingredientes>();
+            while (dataReader.Read())
+            {
+                int idIngrediente = Convert.ToInt32(dataReader["fk_idIngrediente"]);
+                string Nombre = dataReader["Nombre"].ToString();
+                Ingredientes Ingre = new Ingredientes(idIngrediente, Nombre);
+                ListaIngre.Add(Ingre);
+            }
+            return ListaIngre;
+        }
+
+        public static void EliminarIngredienteABuscar()
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Delete IngredientesABuscar";
+            consulta.ExecuteNonQuery();
+        }
+
+        public static void EliminarUnIngredienteABuscar(Ingredientes Ingre)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Delete IngredientesABuscar where Nombre='"+ Ingre.Nombre+"'";
+            consulta.ExecuteNonQuery();
+        }
     }
 }

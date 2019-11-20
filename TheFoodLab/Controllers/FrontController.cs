@@ -7,11 +7,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TheFoodLab.Models
 {
+
     public class FrontController : Controller
     {
+        
+
         // GET: Front
         public ActionResult Index()
         {
+            BD.EliminarIngredienteABuscar();
+            ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
             return View();
         }
 
@@ -45,6 +50,30 @@ namespace TheFoodLab.Models
         {
             ViewBag.ListaRecetasXRecetero = BD.ListarRecetasXRecetero(rec.IdRecetero);
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AgregarIngrediente(Ingredientes Ingre)
+        {
+            Ingredientes Ingrediente = BD.TraerIngrediente(Ingre);
+            if (Ingrediente.Nombre != null)
+            {
+                BD.IngresarIngredienteABuscar(Ingrediente);
+            }
+            else
+            {
+                ViewBag.Error = "Ingrediente no cargado";
+            }
+            ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
+            return View("Index");
+        }
+
+        //TODO: Revisar porque el objeto ingrediente llega vacio (consultar a leo por: new { Ingredient = Ingre })
+        public ActionResult EliminarUnIngredienteABuscar(Ingredientes Ingredient)
+        {
+            BD.EliminarUnIngredienteABuscar(Ingredient);
+            ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
+            return View("Index");
         }
     }
 }

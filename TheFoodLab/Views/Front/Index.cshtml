@@ -10,6 +10,10 @@
                 <div class="banner-content col-lg-8 col-md-12">
                     <h1 class="wow fadeIn" data-wow-duration="4s">Ingresá tus ingredientes <br> y descubrí que recetas podés hacer</h1>
                     <div class="input-wrap">
+                        @if (@ViewBag.Error != null)
+                        {
+                            <h6 class="genric-btn danger">@ViewBag.Error</h6>
+                        }
                         @using TheFoodLab.Models;
                         @model Ingredientes
                         @using (Html.BeginForm("AgregarIngrediente", "Front", FormMethod.Post))
@@ -20,11 +24,17 @@
                             </div>
                         }
                     </div>
-                    <h4 class="text-white">Ingredientes</h4>
-                    <div class="courses pt-20">
-                        <h6 data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">Azúcar</h6>
-                        <h6 data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">Manteca</h6>
-                        <h6 data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">Leche</h6>
+                    <div>
+                        @if (ViewBag.ListaIngredientes.Count > 0)
+                        {
+                            <h4 class="text-white">Ingredientes</h4>
+                            foreach (Ingredientes Ingre in ViewBag.ListaIngredientes)
+                            {
+                                <div>
+                                    <a href="@Url.Action("EliminarUnIngredienteABuscar", "Front", new { Ingredient = Ingre })"><h6 data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">@Ingre.Nombre</h6></a>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>

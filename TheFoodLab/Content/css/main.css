@@ -341,7 +341,7 @@ td, th {
   padding-top: 15px; }
 
 .pt-20 {
-  padding-top: 20px; }
+ }
 
 .pt-25 {
   padding-top: 25px; }
@@ -705,11 +705,12 @@ td, th {
     line-height: 30px;
     border: 1px solid #fff;
     border-radius: 0px;
-    padding: 0 18px;
 	padding-top: 6px;
+	float: left;
     font-size: 12px; }
     .primary-btn.transparent:hover {
       background: #fff;
+	  float: left;
       color: #000; }
   .primary-btn.white {
     background: #fff;
@@ -1893,7 +1894,8 @@ body.mobile-nav-active #mobile-nav-toggle {
         box-shadow: none; }
   .banner-content h4 {
     font-weight: 300;
-    letter-spacing: 1px; }
+    letter-spacing: 1px; 
+	padding-bottom: 15px;}
   .banner-content .courses {
     max-width: 430px;
     margin: 0 auto; }

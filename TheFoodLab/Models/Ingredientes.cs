@@ -19,9 +19,10 @@ namespace TheFoodLab.Models
             Nombre = nom;
         }
 
-        public Ingredientes()
+      public Ingredientes()
         {
 
         }
+
     }
 }
