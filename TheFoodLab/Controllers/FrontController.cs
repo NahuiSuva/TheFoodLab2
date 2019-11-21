@@ -58,7 +58,16 @@ namespace TheFoodLab.Models
             Ingredientes Ingrediente = BD.TraerIngrediente(Ingre);
             if (Ingrediente.Nombre != null)
             {
-                BD.IngresarIngredienteABuscar(Ingrediente);
+                List<Ingredientes> ListaIngreABuscar = BD.ListarIngredientesABuscar();
+                List<int> ListaIdsABuscar = BD.ListarIngredientesABuscarId();
+                if (ListaIdsABuscar.Contains(Ingrediente.IdIngrediente))
+                {
+                    ViewBag.Error = "Ingrediente ya cargado";
+                }
+                else
+                {
+                    BD.IngresarIngredienteABuscar(Ingrediente);
+                }
             }
             else
             {
@@ -68,10 +77,9 @@ namespace TheFoodLab.Models
             return View("Index");
         }
 
-        //TODO: Revisar porque el objeto ingrediente llega vacio (consultar a leo por: new { Ingredient = Ingre })
-        public ActionResult EliminarUnIngredienteABuscar(Ingredientes Ingredient)
+        public ActionResult EliminarUnIngredienteABuscar(int idIngrediente)
         {
-            BD.EliminarUnIngredienteABuscar(Ingredient);
+            BD.EliminarUnIngredienteABuscar(idIngrediente);
             ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
             return View("Index");
         }

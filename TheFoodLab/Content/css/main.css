@@ -707,7 +707,8 @@ td, th {
     border-radius: 0px;
 	padding-top: 6px;
 	float: left;
-    font-size: 12px; }
+    font-size: 12px; 
+		}
     .primary-btn.transparent:hover {
       background: #fff;
 	  float: left;

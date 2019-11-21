@@ -28,12 +28,15 @@
                         @if (ViewBag.ListaIngredientes.Count > 0)
                         {
                             <h4 class="text-white">Ingredientes</h4>
-                            foreach (Ingredientes Ingre in ViewBag.ListaIngredientes)
-                            {
+                            <div>
+                                @foreach (Ingredientes Ingre in ViewBag.ListaIngredientes)
+                                {
                                 <div>
-                                    <a href="@Url.Action("EliminarUnIngredienteABuscar", "Front", new { Ingredient = Ingre })"><h6 data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">@Ingre.Nombre</h6></a>
+                                    <a href="@Url.Action("EliminarUnIngredienteABuscar", "Front", new { idIngrediente = Ingre.IdIngrediente })"><h6 data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">@Ingre.Nombre</h6></a>
                                 </div>
-                            }
+                                }
+                            </div>
+
                         }
                     </div>
                 </div>
