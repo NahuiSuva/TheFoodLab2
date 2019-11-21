@@ -259,5 +259,14 @@ namespace TheFoodLab.Models
             consulta.CommandText = "Delete BuscarIngredientes where fk_IngredienteABuscar='" + Ingre +"'";
             consulta.ExecuteNonQuery();
         }
+
+        public static void IngresarRecetero(Receteros rec)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Insert into Receteros (Nombre, Apellido, Descripcion, Foto, Edad, Email, Username, Password) values('" + rec.Nombre1 + "'," + rec.Apellido1 + "'," + rec.Descripcion1 + "'," + rec.NombreImagen1 + "'," + rec.Edad1 + "'," + rec.Email1 + "'," + rec.Username1 + "'," + rec.Password1 + ")";
+            consulta.ExecuteNonQuery();
+        }
     }
 }

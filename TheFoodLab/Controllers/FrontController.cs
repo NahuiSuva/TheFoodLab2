@@ -83,5 +83,33 @@ namespace TheFoodLab.Models
             ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
             return View("Index");
         }
+
+        public ActionResult Registrarse()
+        {
+            return View("Registrarse");
+        }
+
+        [HttpPost]
+        public ActionResult Grabar(Receteros rec)
+        {
+            if (ModelState.IsValid)
+            {
+                if (rec.Foto1 != null)
+                {
+                    string NuevaUbicacion = Server.MapPath("~/Content/img/") + rec.Foto1.FileName;
+                    rec.Foto1.SaveAs(NuevaUbicacion);
+                    rec.NombreImagen1 = rec.Foto1.FileName;
+                }
+
+                BD.IngresarRecetero(rec);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Recetero = rec;
+                return View("Registrarse");
+            }
+
+        }
     }
 }
