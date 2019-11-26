@@ -278,5 +278,29 @@ namespace TheFoodLab.Models
             consulta.CommandText = "Insert into Recetas (Titulo, Descripcion, Foto, Duracion, fk_TiposComidas, fk_Receteros) values('" + rec.Titulo1 + "'," + rec.Descripcion1 + "'," + rec.Duracion1 + "'," + rec.Fk_TiposComidas + "'," + idRecetero + ")";
             consulta.ExecuteNonQuery();
         }
+
+        public static List<Receta> TraerDestacadas()
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "select Valoraciones.Acumulador / Valoraciones.Contador as Promedio, Recetas.Descripcion, Recetas.Duracion,Recetas.fk_Receteros, Recetas.fk_TiposComidas, Recetas.Foto, Recetas.idRecetas, Recetas.Titulo from Valoraciones inner join Recetas on Recetas.idRecetas = Valoraciones.fk_Recetas group by Valoraciones.Acumulador, Valoraciones.Contador, Recetas.Descripcion, Recetas.Duracion,Recetas.fk_Receteros, Recetas.fk_TiposComidas, Recetas.Foto, Recetas.idRecetas, Recetas.Titulo order by Promedio desc";
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            List<Receta> ListaDestacadas = new List<Receta>();
+            while (dataReader.Read())
+            {
+                int idReceta = Convert.ToInt32(dataReader["idRecetas"]);
+                string Titulo = dataReader["Titulo"].ToString();
+                string Descripcion = dataReader["Descripcion"].ToString();
+                string Foto = dataReader["Foto"].ToString();
+                int Duracion = Convert.ToInt32(dataReader["Duracion"]);
+                int fk_TiposComidas = Convert.ToInt32(dataReader["fk_TiposComidas"]);
+                int fk_Receteros = Convert.ToInt32(dataReader["fk_Receteros"]);
+                Receta unaReceta = new Receta(idReceta, Titulo, Descripcion, Foto, Duracion, fk_TiposComidas, fk_Receteros);
+                ListaDestacadas.Add(unaReceta);
+            }
+            Conexion.Close();
+            return ListaDestacadas;
+        }
     }
 }

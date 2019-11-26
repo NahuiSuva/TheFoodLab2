@@ -10,11 +10,12 @@ namespace TheFoodLab.Models
 
     public class FrontController : Controller
     {
-        bool SeLogueo;
+        bool Logged;
 
         // GET: Front
         public ActionResult Index()
         {
+            ViewBag.Logged = Logged;
             ViewBag.ListaDestacadas = BD.TraerDestacadas();
             BD.EliminarIngredienteABuscar();
             ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
@@ -23,6 +24,7 @@ namespace TheFoodLab.Models
 
         public ActionResult Login()
         {
+            ViewBag.Logged = Logged;
             return View("Login");
         }
 
@@ -39,8 +41,9 @@ namespace TheFoodLab.Models
                 {
                     Session["User"] = validaruser;
                     int id = Session["User"];
-                    return View("Index");
-                    SeLogueo = true;
+                    Logged = true;
+                    ViewBag.Logged = Logged;
+                    return RedirectToAction("Index", "Front");
                 }
                 else
                 {
@@ -52,6 +55,7 @@ namespace TheFoodLab.Models
 
         public ActionResult RecetasDeRecetero(Receteros rec)
         {
+            ViewBag.Logged = Logged;
             ViewBag.ListaRecetasXRecetero = BD.ListarRecetasXRecetero(rec.IdRecetero);
             return View();
         }
@@ -59,8 +63,8 @@ namespace TheFoodLab.Models
         [HttpPost]
         public ActionResult AgregarIngrediente(Ingredientes Ingre)
         {
+            ViewBag.Logged = Logged;
             ViewBag.ListaDestacadas = BD.TraerDestacadas();
-
             Ingredientes Ingrediente = BD.TraerIngrediente(Ingre);
             if (Ingrediente.Nombre != null)
             {
@@ -85,6 +89,8 @@ namespace TheFoodLab.Models
 
         public ActionResult EliminarUnIngredienteABuscar(int idIngrediente)
         {
+            ViewBag.Logged = Logged;
+            ViewBag.ListaDestacadas = BD.TraerDestacadas();
             BD.EliminarUnIngredienteABuscar(idIngrediente);
             ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
             return View("Index");
@@ -92,12 +98,14 @@ namespace TheFoodLab.Models
 
         public ActionResult Registrarse()
         {
+            ViewBag.Logged = Logged;
             return View("Registrarse");
         }
 
         [HttpPost]
         public ActionResult Grabar(Receteros rec)
         {
+            ViewBag.Logged = Logged;
             if (ModelState.IsValid)
             {
                 if (rec.Foto1 != null)
@@ -120,6 +128,7 @@ namespace TheFoodLab.Models
 
         public ActionResult Accion(string Accion, int id)
         {
+            ViewBag.Logged = Logged;
             ViewBag.Accion = Accion;
             Receta rec = new Receta();
             if (Accion == "Editar")
@@ -148,6 +157,7 @@ namespace TheFoodLab.Models
         [HttpPost]
         public ActionResult Grabar(Receta rec, string Accion)
         {
+                        ViewBag.Logged = Logged;
             if (ModelState.IsValid)
             {
                 if (rec.Foto1 != null)

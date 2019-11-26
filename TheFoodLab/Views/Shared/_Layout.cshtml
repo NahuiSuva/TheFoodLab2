@@ -49,7 +49,7 @@
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li class="menu-active"><a href='@Url.Action("Index", "Front")'>Home</a></li>
+                        <li><a href='@Url.Action("Index", "Front")'>Home</a></li>
                         <li class="menu-has-children">
                             <a href="">Filtros</a>
                             <ul>
@@ -77,7 +77,14 @@
                             </ul>
                         </li>
                         <li><a href="about.html">Receteros</a></li>
-                        <li><a href="@Url.Action("Login", "Front")">Login</a></li>
+                        @if (ViewBag.Logged != true)
+                        {
+                            <li><a href="@Url.Action("Login", "Front")">Login</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("MisRecetas", "Front")">Mis Recetas</a></li>
+                        }
                         <li><a href="@Url.Action("Registrarse", "Front")">Registrarse</a></li>
                     </ul>
                 </nav><!-- #nav-menu-container -->
