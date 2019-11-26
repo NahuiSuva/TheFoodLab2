@@ -21,6 +21,7 @@ namespace TheFoodLab.Controllers
             return View("Login");
         }
 
+        [HttpPost]
         public ActionResult Loguearse(Moderadores user)
         {
             if (!ModelState.IsValid)
@@ -29,9 +30,10 @@ namespace TheFoodLab.Controllers
             }
             else
             {
-                bool validaruser = BD.ValidarLogin(user);
-                if (validaruser)
+                int validaruser = BD.ValidarLogin(user);
+                if (validaruser>-1)
                 {
+                    Session["User"] = validaruser;
                     return View("Index");
                 }
                 else
@@ -104,7 +106,7 @@ namespace TheFoodLab.Controllers
             {
                 if (id > 0)
                 {
-                    // Voy a buscar la noticia a la base de datos
+                    // Voy a buscar la receta a la base de datos
                     rec = BD.TraerUnaReceta(id);
                 }
                 ViewBag.ListaTipo = BD.ListarTipos();
