@@ -30,7 +30,7 @@ namespace TheFoodLab.Controllers
             }
             else
             {
-                int validaruser = BD.ValidarLoginFront(user);
+                int validaruser = BD.ValidarLogin(user);
                 if (validaruser>-1)
                 {
                     Session["User"] = validaruser;
