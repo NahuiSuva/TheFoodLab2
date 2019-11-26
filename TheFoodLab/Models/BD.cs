@@ -268,5 +268,29 @@ namespace TheFoodLab.Models
             consulta.CommandText = "Insert into Receteros (Nombre, Apellido, Descripcion, Foto, Edad, Email, Username, Password) values('" + rec.Nombre1 + "'," + rec.Apellido1 + "'," + rec.Descripcion1 + "'," + rec.NombreImagen1 + "'," + rec.Edad1 + "'," + rec.Email1 + "'," + rec.Username1 + "'," + rec.Password1 + ")";
             consulta.ExecuteNonQuery();
         }
+
+        public static List <Receta> TraerDestacadas()
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "select top 4 Valoraciones.Acumulador / Valoraciones.Contador as Promedio, Recetas.Descripcion, Recetas.Duracion, Recetas.fk_Receteros, Recetas.fk_TiposComidas, Recetas.Foto, Recetas.idRecetas, Recetas.Titulo  from Valoraciones inner join Recetas on RECETAS.idRecetas = fk_Recetas group by fk_Recetas, Valoraciones.Acumulador, Valoraciones.Contador, Recetas.Descripcion, Recetas.Duracion, Recetas.fk_Receteros, Recetas.fk_TiposComidas, Recetas.Foto, Recetas.idRecetas, Recetas.Titulo order by Promedio desc";
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            List<Receta> ListaReceta= new List<Receta>();
+            while (dataReader.Read())
+            {
+                int idReceta = Convert.ToInt32(dataReader["idRecetas"]);
+                string Titulo = dataReader["Titulo"].ToString();
+                string Descripcion = dataReader["Descripcion"].ToString();
+                string Foto = dataReader["Foto"].ToString();
+                int Duracion = Convert.ToInt32(dataReader["Duracion"]);
+                int fk_TiposComidas = Convert.ToInt32(dataReader["fk_TiposComidas"]);
+                int fk_Receteros = Convert.ToInt32(dataReader["fk_Receteros"]);
+                Receta Rece = new Receta(idReceta, Titulo,Descripcion,Foto,Duracion,fk_TiposComidas,fk_Receteros);
+                ListaReceta.Add(Rece);
+            }
+            Conexion.Close();
+            return ListaReceta;
+        }
     }
 }

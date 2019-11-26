@@ -15,6 +15,7 @@ namespace TheFoodLab.Models
         // GET: Front
         public ActionResult Index()
         {
+            ViewBag.ListaDestacadas = BD.TraerDestacadas();
             BD.EliminarIngredienteABuscar();
             ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
             return View();
@@ -55,6 +56,8 @@ namespace TheFoodLab.Models
         [HttpPost]
         public ActionResult AgregarIngrediente(Ingredientes Ingre)
         {
+            ViewBag.ListaDestacadas = BD.TraerDestacadas();
+
             Ingredientes Ingrediente = BD.TraerIngrediente(Ingre);
             if (Ingrediente.Nombre != null)
             {

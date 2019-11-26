@@ -74,9 +74,9 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: #fff;
     text-align: left;
-    background-color: #fff
+    background-color: #fff !important; 
 }
 
 [tabindex="-1"]:focus {
@@ -528,7 +528,7 @@ mark {
 }
 
 .img-fluid {
-    max-width: 150px;
+    max-height: 100px;
     height: auto
 }
 
@@ -8030,6 +8030,10 @@ button.bg-dark:hover {
 .ml-auto,
 .mx-auto {
     margin-left: auto !important
+}
+
+.destacada{
+float:left;
 }
 
 @media (min-width:576px) {
