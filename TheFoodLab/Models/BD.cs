@@ -59,7 +59,7 @@ namespace TheFoodLab.Models
                 string contrasenia = dataReader["Password"].ToString();
                 if (usuario == user.Username1 && contrasenia == user.Password1)
                 {
-                    validar = convert.ToInt32(dataReader["idReceteros"]);
+                    validar = Convert.ToInt32(dataReader["idReceteros"]);
                 }
             }
             Desconectar(Conexion);

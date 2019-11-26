@@ -150,6 +150,7 @@ namespace TheFoodLab.Models
         {
             if (ModelState.IsValid)
             {
+                int validaruser = BD.ValidarLogin(user);
                 if (rec.Foto1 != null)
                 {
                     string NuevaUbicacion = Server.MapPath("~/Content/img/") + rec.Foto1.FileName;
@@ -165,7 +166,7 @@ namespace TheFoodLab.Models
                 {
                     Session["Recetero"] = validaruser;
                     int id = Session["Recetero"];
-                    BD.InsertarReceta(rec,Session["Recetero"], id);
+                    BD.InsertarReceta(rec, id);
                 }
                 else
                 {
