@@ -31,8 +31,8 @@ namespace TheFoodLab.Models
             consulta.CommandType = System.Data.CommandType.Text;
             consulta.CommandText = "Select * from Moderadores";
             SqlDataReader dataReader = consulta.ExecuteReader();
-            bool validar = false;
-            while (dataReader.Read() && validar == false)
+            int validar = -1;
+            while (dataReader.Read() && validar == -1)
             {
                 string usuario = dataReader["Username"].ToString();
                 string contrasenia = dataReader["Password"].ToString();

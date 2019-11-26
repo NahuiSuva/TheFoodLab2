@@ -37,14 +37,15 @@ namespace TheFoodLab.Models
                 int validaruser = BD.ValidarLoginFront(user);
                 if (validaruser>-1)
                 {
-                    
+                    Session["User"] = validaruser;
+                    int id = Session["User"];
                     return View("Index");
                     SeLogueo = true;
                 }
                 else
                 {
                     ViewBag.Error = "Usuario o contraseña incorrecta";
-                    return View("Login", user);
+                    return View("Login");
                 }
             }
         }
@@ -162,8 +163,9 @@ namespace TheFoodLab.Models
                 }
                 else if(Accion=="Subir")
                 {
-                    //Session["Recetero"] = validaruser;
-                    BD.InsertarReceta(rec, 1);//falta pasar el id de recetero
+                    Session["Recetero"] = validaruser;
+                    int id = Session["Recetero"];
+                    BD.InsertarReceta(rec,Session["Recetero"], id);
                 }
                 else
                 {
