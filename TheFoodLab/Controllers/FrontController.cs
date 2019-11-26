@@ -10,7 +10,7 @@ namespace TheFoodLab.Models
 
     public class FrontController : Controller
     {
-        
+        bool SeLogueo;
 
         // GET: Front
         public ActionResult Index()
@@ -33,10 +33,12 @@ namespace TheFoodLab.Models
             }
             else
             {
-                bool validaruser = BD.ValidarLoginFront(user);
-                if (validaruser)
+                int validaruser = BD.ValidarLoginFront(user);
+                if (validaruser>-1)
                 {
+                    
                     return View("Index");
+                    SeLogueo = true;
                 }
                 else
                 {

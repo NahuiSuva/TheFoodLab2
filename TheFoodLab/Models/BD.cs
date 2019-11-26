@@ -10,7 +10,7 @@ namespace TheFoodLab.Models
     public class BD
     {
         public static List<TiposComida> ListaTipos = new List<TiposComida>();
-        public static string connectionString = "Server=.; Database=TheFoodLabBD;User Id=alumno;Password=alumno1;";
+        public static string connectionString = "Server=.; Database=TheFoodLabBD;User Id=alumno;Password=alumno;";
         private static SqlConnection Conectar()
         {
             SqlConnection a = new SqlConnection(connectionString);
@@ -44,21 +44,21 @@ namespace TheFoodLab.Models
             return validar;
         }
 
-        public static bool ValidarLoginFront(Receteros user)
+        public static int ValidarLoginFront(Receteros user)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandType = System.Data.CommandType.Text;
             consulta.CommandText = "Select * from Receteros";
             SqlDataReader dataReader = consulta.ExecuteReader();
-            bool validar = false;
-            while (dataReader.Read() && validar == false)
+            int validar = -1;
+            while (dataReader.Read() && validar == -1)
             {
                 string usuario = dataReader["Username"].ToString();
                 string contrasenia = dataReader["Password"].ToString();
                 if (usuario == user.Username1 && contrasenia == user.Password1)
                 {
-                    validar = true;
+                    validar = convert.ToInt32(dataReader["idReceteros"]);
                 }
             }
             Desconectar(Conexion);
