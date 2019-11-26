@@ -15,6 +15,7 @@ namespace TheFoodLab.Models
         // GET: Front
         public ActionResult Index()
         {
+            ViewBag.ListaDestacadas = BD.TraerDestacadas();
             BD.EliminarIngredienteABuscar();
             ViewBag.ListaIngredientes = BD.ListarIngredientesABuscar();
             return View();
@@ -57,6 +58,8 @@ namespace TheFoodLab.Models
         [HttpPost]
         public ActionResult AgregarIngrediente(Ingredientes Ingre)
         {
+            ViewBag.ListaDestacadas = BD.TraerDestacadas();
+
             Ingredientes Ingrediente = BD.TraerIngrediente(Ingre);
             if (Ingrediente.Nombre != null)
             {
@@ -110,6 +113,70 @@ namespace TheFoodLab.Models
             {
                 ViewBag.Recetero = rec;
                 return View("Registrarse");
+            }
+
+        }
+
+        public ActionResult Accion(string Accion, int id)
+        {
+            ViewBag.Accion = Accion;
+            Receta rec = new Receta();
+            if (Accion == "Editar")
+            {
+                if (id > 0)
+                {
+                    // Voy a buscar la receta a la base de datos
+                    rec = BD.TraerUnaReceta(id);
+                }
+                ViewBag.ListaTipo = BD.ListarTipos();
+                ViewBag.Imagen = rec.NombreImagen1;
+                return View(rec);
+            }
+            else if(Accion=="Subir")
+            {
+                ViewBag.ListaTipo = BD.ListarTipos();
+                return View();
+            }
+            else
+            {
+                BD.EliminarReceta(id);
+                return RedirectToAction("RecetasDeRecetero");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Grabar(Receta rec, string Accion)
+        {
+            if (ModelState.IsValid)
+            {
+                if (rec.Foto1 != null)
+                {
+                    string NuevaUbicacion = Server.MapPath("~/Content/img/") + rec.Foto1.FileName;
+                    rec.Foto1.SaveAs(NuevaUbicacion);
+                    rec.NombreImagen1 = rec.Foto1.FileName;
+                }
+
+                if (Accion == "Editar")
+                {
+                    BD.ModificarReceta(rec);
+                }
+                else if(Accion=="Subir")
+                {
+                    //Session["Recetero"] = validaruser;
+                    BD.InsertarReceta(rec, 1);//falta pasar el id de recetero
+                }
+                else
+                {
+                    int idReceta = rec.IdReceta;
+                    BD.EliminarReceta(idReceta);
+                }
+                return RedirectToAction("BMRecetas");
+            }
+            else
+            {
+                ViewBag.ListaTipo = BD.ListarTipos();
+                ViewBag.Accion = Accion;
+                return View("Accion", rec);
             }
 
         }

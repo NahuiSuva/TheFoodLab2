@@ -23,8 +23,9 @@ namespace TheFoodLab.Models
             connection.Close();
         }
 
-        public static bool ValidarLogin(Moderadores user)
+        public static int ValidarLogin(Moderadores user)
         {
+            int devolver = -1;
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandType = System.Data.CommandType.Text;
@@ -37,11 +38,11 @@ namespace TheFoodLab.Models
                 string contrasenia = dataReader["Password"].ToString();
                 if (usuario == user.Username && contrasenia == user.Password)
                 {
-                    validar = true;
+                    devolver= user.IdModeradores;
                 }
             }
             Desconectar(Conexion);
-            return validar;
+            return devolver;
         }
 
         public static int ValidarLoginFront(Receteros user)
@@ -266,6 +267,15 @@ namespace TheFoodLab.Models
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandType = System.Data.CommandType.Text;
             consulta.CommandText = "Insert into Receteros (Nombre, Apellido, Descripcion, Foto, Edad, Email, Username, Password) values('" + rec.Nombre1 + "'," + rec.Apellido1 + "'," + rec.Descripcion1 + "'," + rec.NombreImagen1 + "'," + rec.Edad1 + "'," + rec.Email1 + "'," + rec.Username1 + "'," + rec.Password1 + ")";
+            consulta.ExecuteNonQuery();
+        }
+
+        public static void InsertarReceta(Receta rec, int idRecetero)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandType = System.Data.CommandType.Text;
+            consulta.CommandText = "Insert into Recetas (Titulo, Descripcion, Foto, Duracion, fk_TiposComidas, fk_Receteros) values('" + rec.Titulo1 + "'," + rec.Descripcion1 + "'," + rec.Duracion1 + "'," + rec.Fk_TiposComidas + "'," + idRecetero + ")";
             consulta.ExecuteNonQuery();
         }
     }
