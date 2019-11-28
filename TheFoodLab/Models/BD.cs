@@ -10,7 +10,7 @@ namespace TheFoodLab.Models
     public class BD
     {
         public static List<TiposComida> ListaTipos = new List<TiposComida>();
-        public static string connectionString = "Server=.; Database=TheFoodLabBD;User Id=alumno;Password=alumno;";
+        public static string connectionString = "Server=.; Database=TheFoodLabBD;User Id=alumno;Password=alumno1;";
         private static SqlConnection Conectar()
         {
             SqlConnection a = new SqlConnection(connectionString);

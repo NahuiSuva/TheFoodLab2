@@ -40,7 +40,7 @@ namespace TheFoodLab.Models
                 if (validaruser>-1)
                 {
                     Session["User"] = validaruser;
-                    int id = Session["User"];
+                    int id = Convert.ToInt32(Session["User"]);
                     Logged = true;
                     ViewBag.Logged = Logged;
                     return RedirectToAction("Index", "Front");
@@ -173,8 +173,8 @@ namespace TheFoodLab.Models
                 }
                 else if(Accion=="Subir")
                 {
-                    Session["Recetero"] = validaruser;
-                    int id = Session["Recetero"];
+                    //Session["Recetero"] = validaruser;
+                    int id = 1; // Session["Recetero"];
                     BD.InsertarReceta(rec, id);
                 }
                 else
