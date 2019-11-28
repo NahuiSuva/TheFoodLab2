@@ -275,7 +275,7 @@ namespace TheFoodLab.Models
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandType = System.Data.CommandType.Text;
-            consulta.CommandText = "Insert into Recetas (Titulo, Descripcion, Foto, Duracion, fk_TiposComidas, fk_Receteros) values('" + rec.Titulo1 + "'," + rec.Descripcion1 + "'," + rec.Duracion1 + "'," + rec.Fk_TiposComidas + "'," + idRecetero + ")";
+            consulta.CommandText = "Insert into Recetas (Titulo, Foto,Descripcion, Duracion, fk_TiposComidas, fk_Receteros) values('" + rec.Titulo1 + "', '"+ rec.NombreImagen1 +"', '" + rec.Descripcion1 + "'," + rec.Duracion1 + "," + rec.Fk_TiposComidas + "," + idRecetero + ")";
             consulta.ExecuteNonQuery();
         }
 

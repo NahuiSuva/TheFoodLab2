@@ -6,7 +6,7 @@
 
 @model Receta
 
-@Html.BeginForm("Grabar", "BackOffice", new { Accion = ViewBag.Accion }, FormMethod.Post, new { enctype = "multipart/form-data" })
+@Html.BeginForm("GrabarReceta", "Front", new { Accion = ViewBag.Accion }, FormMethod.Post, new { enctype = "multipart/form-data" })
 @Html.HiddenFor(model => model.IdReceta)
 @Html.HiddenFor(model => model.NombreImagen1)
 <h4 style="padding-top:50px; color:red;">@ViewBag.Error</h4>

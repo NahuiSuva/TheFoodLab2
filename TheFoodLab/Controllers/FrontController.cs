@@ -55,8 +55,9 @@ namespace TheFoodLab.Models
 
         public ActionResult RecetasDeRecetero(Receteros rec)
         {
+            int id= Convert.ToInt32(Session["User"]); 
             ViewBag.Logged = Logged;
-            ViewBag.ListaRecetasXRecetero = BD.ListarRecetasXRecetero(rec.IdRecetero);
+            ViewBag.ListaRecetasXRecetero = BD.ListarRecetasXRecetero(id);
             return View();
         }
 
@@ -126,7 +127,15 @@ namespace TheFoodLab.Models
 
         }
 
-        public ActionResult Accion(string Accion, int id)
+        public ActionResult NuevaReceta()
+        {
+            ViewBag.Logged = Logged;
+            ViewBag.Accion = "Subir";
+            ViewBag.ListaTipo = BD.ListarTipos();
+            return View("Accion");
+        }
+
+            public ActionResult Accion(string Accion, int id)
         {
             ViewBag.Logged = Logged;
             ViewBag.Accion = Accion;
@@ -144,6 +153,7 @@ namespace TheFoodLab.Models
             }
             else if(Accion=="Subir")
             {
+                ViewBag.Accion = "Subir";
                 ViewBag.ListaTipo = BD.ListarTipos();
                 return View();
             }
@@ -155,10 +165,10 @@ namespace TheFoodLab.Models
         }
 
         [HttpPost]
-        public ActionResult Grabar(Receta rec, string Accion)
+        public ActionResult GrabarReceta(Receta rec, string Accion)
         {
-                        ViewBag.Logged = Logged;
-            if (ModelState.IsValid)
+            ViewBag.Logged = Logged;
+            if (ModelState.IsValidField("Titulo1"))
             {
                 if (rec.Foto1 != null)
                 {
@@ -173,16 +183,20 @@ namespace TheFoodLab.Models
                 }
                 else if(Accion=="Subir")
                 {
+                    //int validaruser = BD.ValidarLoginFront(user);
                     //Session["Recetero"] = validaruser;
-                    int id = 1; // Session["Recetero"];
-                    BD.InsertarReceta(rec, id);
+                    int id = Convert.ToInt32(Session["User"]);
+                    //if(Session["User"]!=null)
+                    //{
+                        BD.InsertarReceta(rec, id);
+                    //}
                 }
                 else
                 {
                     int idReceta = rec.IdReceta;
                     BD.EliminarReceta(idReceta);
                 }
-                return RedirectToAction("BMRecetas");
+                return RedirectToAction("RecetasDeRecetero");
             }
             else
             {
@@ -193,4 +207,5 @@ namespace TheFoodLab.Models
 
         }
     }
+
 }

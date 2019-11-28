@@ -136,6 +136,7 @@
     <Content Include="Views\Front\Login.cshtml" />
     <Content Include="Views\Front\RecetasDeRecetero.cshtml" />
     <Content Include="Views\Front\Registrarse.cshtml" />
+    <Content Include="Views\Front\Accion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

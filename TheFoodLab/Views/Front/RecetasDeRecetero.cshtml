@@ -4,6 +4,9 @@
 }
 @using TheFoodLab.Models
 @model Receta
+<a href="@Url.Action("NuevaReceta", "Front")">
+    <img class="lnr lnr-bubble" src="~/Content/img/mas.png" alt="">
+</a>
 <table>
     @foreach (Receta aux in ViewBag.ListaRecetasXRecetero)
     {
@@ -12,7 +15,16 @@
                 <img class="img-fluid" src="~/Content/img/@aux.NombreImagen1" alt="">
             </td>
             <td>
-                <a href="@Url.Action("Detalle", "Home", new { idReceta = aux.IdReceta })"><h6>@aux.Titulo1</h6></a> 
+                <a href="@Url.Action("Detalle", "Home", new { idReceta = aux.IdReceta })"><h6>@aux.Titulo1</h6></a>
+            </td>
+            <td>
+                <a href="@Url.Action("Accion", "Front", new { Accion = "Editar", Id=aux.IdReceta })">
+                    <img class="lnr lnr-bubble" src="~/Content/img/pen.png" alt="">
+                </a>
+
+                <a href="@Url.Action("Accion", "Front", new { Accion = "Eliminar", Id=aux.IdReceta })">
+                    <img class="lnr lnr-bubble" src="~/Content/img/bin.png" alt="">
+                </a>
             </td>
         </tr>
     }
